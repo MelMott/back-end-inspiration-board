@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
+from flask import Blueprint
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -30,15 +31,15 @@ def create_app():
     # from .routes import example_bp
     # app.register_blueprint(example_bp)
 
-    from flask import Blueprint
+    
 
-    #  add our new animals blueprint
+    #  add our new cards blueprint
     from .routes.card import cards_bp
     app.register_blueprint(cards_bp)
 
-    # # add our new Sanctuary blueprint
-    # from .routes.sanctuary import sanctuaries_bp
-    # app.register_blueprint(sanctuaries_bp)
+    # # add our new board blueprint
+    from .routes.board import boards_bp
+    app.register_blueprint(boards_bp)
 
     CORS(app)
     return app
