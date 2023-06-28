@@ -16,7 +16,7 @@ def handle_cards():
     if title_query:
         cards = Card.query.filter_by(title=title_query)
     else:
-        cards = Card.query.order_by(asc(Card.id)).all()
+        cards = Card.query.order_by(asc(Card.card_id)).all()
     cards_response = []
     for card in cards:
         cards_response.append(card.to_dict())
@@ -55,13 +55,13 @@ def delete_one_card(card_id):
 # COME BACK TO THIS AFTER BOARD IS IN PLACE AND THEN CHECK WITH POSTMAN 
 # update like count on card 
 @cards_bp.route("/<card_id>", methods=["PATCH"])
-def update_like_count(card_id):
+def update_likes_count(card_id):
     card_to_update = get_valid_item_by_id(Card, card_id)
 
     request_body = request.get_json()
     
-    card_to_update.like_count = request_body["like_count"]
+    card_to_update.likes_count = request_body["likes_count"]
 
     db.session.commit()
 
-    return f"Card {card_id} like count updated to {card_to_update.like_count}", 200 
+    return f"Card {card_id} like count updated to {card_to_update.likes_count}", 200 
