@@ -33,6 +33,7 @@ def create_board():
     return {
         "board_id": new_board.board_id,
         "title": new_board.title,
+        "owner": new_board.owner,
         "msg": "Successfully created"
     }, 201
 
@@ -52,3 +53,14 @@ def handle_all_animals_of_one_(board_id):
         cards_response.append(card.to_dict())
 
     return jsonify(cards_response), 200
+
+
+# delete one board (by id)
+@boards_bp.route("/<board_id>", methods=["DELETE"])
+def delete_one_board(board_id):
+    board_to_delete = get_valid_item_by_id(Board, board_id)
+
+    db.session.delete(board_to_delete)
+    db.session.commit()
+
+    return f"Board {board_to_delete.title} is deleted!", 200
