@@ -45,7 +45,7 @@ def handle_one_board(board_id):
 
 # get all cards of one board 
 @boards_bp.route("/<board_id>/cards", methods=['GET'])
-def handle_all_animals_of_one_(board_id):
+def handle_all_cards_of_one_(board_id):
     board = get_valid_item_by_id(Board, board_id)
 
     cards_response = []
