@@ -5,7 +5,7 @@ from app.models.card import Card
 from app import db
 from app.routes.routes_helper import get_valid_item_by_id
 
-# POST GET and DELETE cards
+# POST, GET, and DELETE cards
 
 cards_bp = Blueprint("cards", __name__, url_prefix="/cards")
 
@@ -52,7 +52,6 @@ def delete_one_card(card_id):
 
     return f"Card {card_to_delete.message} is deleted!", 200
 
-# COME BACK TO THIS AFTER BOARD IS IN PLACE AND THEN CHECK WITH POSTMAN 
 # update like count on card 
 @cards_bp.route("/<card_id>", methods=["PATCH"])
 def update_likes_count(card_id):
@@ -65,3 +64,5 @@ def update_likes_count(card_id):
     db.session.commit()
 
     return f"Card {card_id} like count updated to {card_to_update.likes_count}", 200 
+
+
