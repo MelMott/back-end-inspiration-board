@@ -65,13 +65,13 @@ def delete_one_board(board_id):
 
     return f"Board {board_to_delete.title} is deleted!", 200
 
-# NEW ROUTE TO ADD CARD TO ONE BOARD
-@boards_bp.route("/<board_id>/cards", methods=['POST'])
-def create_new_card_for_one_board(board_id):
-    board = get_valid_item_by_id(Board, board_id)
+# # NEW ROUTE TO ADD CARD TO ONE BOARD
+# @boards_bp.route("/<board_id>/cards", methods=['POST'])
+# def create_new_card_for_one_board(board_id):
+#     board = get_valid_item_by_id(Board, board_id)
 
-    cards_response = []
-    for card in board.cards:
-        cards_response.append(card.to_dict())
+#     cards_response = []
+#     for card in board.cards:
+#         cards_response.append(card.to_dict())
 
-    return jsonify(cards_response), 200
+#     return jsonify(cards_response), 200
