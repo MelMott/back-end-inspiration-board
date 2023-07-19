@@ -22,6 +22,11 @@ def handle_cards():
         cards_response.append(card.to_dict())
     return jsonify(cards_response), 200
 
+@cards_bp.route("/<card_id>", methods=['GET'])
+def handle_one_card(card_id):
+    card = get_valid_item_by_id(Card, card_id)
+    return card.to_dict(), 200
+
 # create new card 
 @cards_bp.route("", methods=['POST'])
 def create_card():
